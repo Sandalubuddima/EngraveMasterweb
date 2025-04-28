@@ -1,9 +1,8 @@
-// src/pages/signin.jsx
 import { useState } from 'react'
 import { FcGoogle } from 'react-icons/fc'
 import { FaApple, FaFacebookF } from 'react-icons/fa'
 import EMImage from "../assets/EM.png";
-
+import { GoogleLogin } from '@react-oauth/google';
 
 
 export default function Signup() {
@@ -11,9 +10,38 @@ export default function Signup() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    console.log({ name, email, password })
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const [firstName, lastName = ""] = name.split(' ');
+
+    try {
+      const response = await fetch("http://localhost:5001/api/users", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          firstName,
+          lastName,
+          email,
+          password,
+        }),
+      });
+
+      const data = await response.json();
+      console.log(data);
+
+      if (data.message === "User created") {
+        alert("Account created successfully!");
+        window.location.href = "/login";
+      } else {
+        alert(data.message || "Account creation failed!");
+      }
+    } catch (error) {
+      console.error("Error creating account:", error);
+      alert("An error occurred. Please try again later.");
+    }
   }
 
   return (
@@ -64,17 +92,53 @@ export default function Signup() {
             </a>
           </p>
 
-          <div className="flex justify-center gap-4 mt-6">
-            <button className="p-3 bg-white border rounded-full shadow text-xl">
-              <FcGoogle />
-            </button>
-            <button className="p-3 bg-white border rounded-full shadow text-xl">
-              <FaApple />
-            </button>
-            <button className="p-3 bg-white border rounded-full shadow text-xl text-[#1877f2]">
-              <FaFacebookF />
-            </button>
+          <div className="flex flex-col items-center gap-4 mt-6">
+  <GoogleLogin
+    onSuccess={async (credentialResponse) => {
+      console.log(credentialResponse);
+
+      try {
+        const response = await fetch("http://localhost:5001/api/users/google", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            token: credentialResponse.credential,
+          }),
+        });
+
+        const data = await response.json();
+        console.log(data);
+
+        if (data.token) {
+          alert("Google signup/login successful!");
+          localStorage.setItem("token", data.token);
+          window.location.href = "/";
+        } else {
+          alert(data.message || "Google signup/login failed!");
+        }
+      } catch (error) {
+        console.error("Google signup/login error:", error);
+        alert("An error occurred during Google signup/login");
+      }
+    }}
+    onError={() => {
+      console.log('Google Signup/Login Failed');
+      alert('Google signup/login failed!');
+    }}
+  />
+
+            <div className="flex gap-4">
+              <button className="p-3 bg-white border rounded-full shadow text-xl">
+                <FaApple />
+              </button>
+              <button className="p-3 bg-white border rounded-full shadow text-xl text-[#1877f2]">
+                <FaFacebookF />
+              </button>
+            </div>
           </div>
+
         </div>
 
         {/* Right Side - Image */}
