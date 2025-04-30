@@ -6,6 +6,7 @@ import Signup_page from './pages/signuppage'
 import Home_page from './pages/homepage'
 import AboutUs from './pages/AboutUs'
 import Services from './pages/Services'
+import Contact from './pages/Contact'
 import Docs from "./pages/Docs";
 import AskAI from './pages/AskAI'
  // import Create from './pages/Create' // You forgot to uncomment this
@@ -25,6 +26,7 @@ function App() {
           <Route path="/signup" element={<Signup_page />} />
           <Route path="/docs" element={<Docs />} />
           <Route path="/services" element={<Services />} />
+          <Route path="/contact" element={<Contact />} />
 
           {/* Protected route */}
           <Route
