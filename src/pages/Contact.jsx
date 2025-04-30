@@ -21,7 +21,7 @@ export default function Contact() {
           </div>
           <div className="bg-[#ffc18c] dark:bg-[#84240c] p-6 rounded-2xl shadow-lg text-center">
             <h2 className="text-xl font-semibold mb-2">Address</h2>
-            <p>No. 25, Main Street, Colombo, Sri Lanka</p>
+            <p>No. 253, Main Street, Colombo, Sri Lanka</p>
           </div>
         </div>
   
