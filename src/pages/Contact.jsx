@@ -17,7 +17,7 @@ export default function Contact() {
           </div>
           <div className="bg-[#ffc18c] dark:bg-[#84240c] p-6 rounded-2xl shadow-lg text-center">
             <h2 className="text-xl font-semibold mb-2">Phone</h2>
-            <p>+94 77 123 4567</p>
+            <p>+94 768785285</p>
           </div>
           <div className="bg-[#ffc18c] dark:bg-[#84240c] p-6 rounded-2xl shadow-lg text-center">
             <h2 className="text-xl font-semibold mb-2">Address</h2>
