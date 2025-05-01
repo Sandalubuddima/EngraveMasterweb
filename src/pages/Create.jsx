@@ -1,4 +1,6 @@
 import React, { useState, useRef } from "react";
+import Navbar from "../components/PageNavbar";
+import Footer from "../components/Footer";
 
 export default function Create() {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -57,6 +59,8 @@ export default function Create() {
   };
 
   return (
+        <>
+          <Navbar />
     <div className="min-h-screen bg-[#f5e9da] dark:bg-[#1C1C1C] flex items-center justify-center px-6 py-12">
       <div className="w-full max-w-2xl bg-white dark:bg-[#2a2a2a] shadow-xl rounded-2xl p-8">
         <h2 className="text-3xl font-extrabold text-[#84240C] dark:text-[#ffc18c] mb-6 text-center">
@@ -109,5 +113,7 @@ export default function Create() {
         )}
       </div>
     </div>
+          <Footer />
+        </>
   );
 }
