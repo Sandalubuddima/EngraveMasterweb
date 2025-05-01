@@ -11,7 +11,7 @@ import ProfilePage from './pages/ProfilePage'
 
 import Docs from "./pages/Docs";
 import AskAI from './pages/AskAI'
- // import Create from './pages/Create' // You forgot to uncomment this
+import Create from './pages/Create'
 import { GoogleOAuthProvider } from '@react-oauth/google'
 import ProtectedRoute from './components/ProtectedRoute'; // Import it
 
@@ -30,6 +30,7 @@ function App() {
           <Route path="/docs" element={<Docs />} />
           <Route path="/services" element={<Services />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/create" element={<Create />} />
 
           {/* Protected route */}
           <Route
