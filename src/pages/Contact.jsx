@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Navbar from "../components/PageNavbar";
 import Footer from "../components/Footer";
+import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
+
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -265,20 +267,19 @@ export default function Contact() {
               <h2 className="text-2xl font-bold">Find Us</h2>
               <p className="opacity-90">Visit our office location</p>
             </div>
-            <div className="h-96 w-full bg-gray-300 dark:bg-gray-700 relative flex items-center justify-center">
-              {/* Placeholder for actual map */}
-              <div className="text-center p-6">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 mx-auto text-gray-400 dark:text-gray-500 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                </svg>
-                <p className="text-gray-600 dark:text-gray-400">
-                  Map integration would appear here.<br />
-                  <span className="text-sm">Colombo, Sri Lanka</span>
-                </p>
-              </div>
+            <div className="h-96 w-full">
+              <LoadScript googleMapsApiKey="AIzaSyC4zcfEYFK-woLfp8L4EcwZSx1ujuk_F30">
+                <GoogleMap
+                  mapContainerStyle={{ width: "100%", height: "100%" }}
+                  center={{ lat: 6.9271, lng: 79.8612 }} // Colombo
+                  zoom={12}
+                >
+                  <Marker position={{ lat: 6.9271, lng: 79.8612 }} />
+                </GoogleMap>
+              </LoadScript>
             </div>
           </div>
+
         </div>
       </main>
       <Footer />
